@@ -3,8 +3,11 @@ Meteor Photo Uploader
 
 This is a drop in widget to add the ability to upload, or capture if allowed by the device, images.  It will rescale the image, fix iOS sampling and orientation.  Allows cropping via [jquery-jcrop] (https://github.com/waltyuyu/meteor-jquery-jcrop), which is required.
 
-	Note: this is built using coffeescript.  If you don't want that then clone and compile it down to javascript
+	Note: this is built using coffeescript.  If you don't want that then clone and compile it down to javascript.
 
+### TODO
+
+Tests other than the test [website] (http:://photoUploader.pfafman.com)
 
 ### Installation
 
@@ -17,8 +20,9 @@ This is a drop in widget to add the ability to upload, or capture if allowed by 
 
 * Install via [Atmosphere](https://atmosphere.meteor.com)
 
+```
 	mrt add photo-uploader
-
+```
 
 In your handlebar templates you can just include the template photoUploader:
 
