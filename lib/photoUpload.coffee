@@ -2,22 +2,31 @@
 
 class PhotoUploadHandler
     constructor: (@options) ->
-        
-        @_serverSubmitMethodName = @options?.serverUploadMethod   || "submitPhoto"
-        @_uploadButtonLabel      = @options?.uploadButtonLabel    || "Upload"
-        @_takePhotoButtonLabel   = @options?.takePhotoButtonLabel || "Take Photo"
-        @_resizeMaxHeight        = @options?.resizeMaxHeight      || 300
-        @_resizeMaxWidth         = @options?.resizeMaxHeight      || 300
-        @_serverSubmitOptions    = @options?.serverUploadOptions  || {}
+    
+        defaults =
+            serverUploadMethod:     "submitPhoto"
+            uploadButtonLabel:      "Upload"
+            takePhotoButtonLabel:   "Take Photo"
+            resizeMaxHeight:        300
+            resizeMaxHeight:        300
+            serverUploadOptions:    {}
 
+        @options = _.defaults(@options, defaults)
+        
         @previewImage = null
         @previewImageListeners = new Deps.Dependency()
         
         @cropCords = null
         @previewImageCropListeners = new Deps.Dependency()
 
+        @optionsListeners = new Deps.Dependency()
+
         @setup()
 
+    setOptions: (newOptions) ->
+        @options = _.extend(@options, newOptions)
+        @optionsListeners.changed()
+        
     reset: ->
         #@previewImage = null
         #@cropCords = null
@@ -37,7 +46,8 @@ class PhotoUploadHandler
                 @previewImage
 
             takePhotoLabel: =>
-                @_takePhotoButtonLabel
+                @optionsListeners.depend()
+                @options.takePhotoButtonLabel
 
         Template.photoUpload.events
             "click #take-photo-button": (e) ->
@@ -56,8 +66,8 @@ class PhotoUploadHandler
                             orientation: data?.exif?.get?('Orientation') or 1
                         @previewImageListeners.changed()
                     ,
-                        maxHeight: @_resizeMaxHeight
-                        maxWidth: @_resizeMaxWidth
+                        maxHeight: @options.resizeMaxHeight
+                        maxWidth: @options.resizeMaxWidth
                         orientation: data?.exif?.get?('Orientation') or 1
                         canvas: true
                 
@@ -106,7 +116,8 @@ class PhotoUploadHandler
                 @cropCords?
 
             uploadLabel: =>
-                @_uploadButtonLabel
+                @optionsListeners.depend()
+                @options.uploadButtonLabel
 
         Template.photoUploadPreview.events
 
@@ -137,7 +148,7 @@ class PhotoUploadHandler
                     orientation: newPhoto.attr('orientation')
                     src: newPhoto.attr('src')
 
-                Meteor.call @_serverSubmitMethodName, rec, @_serverSubmitOptions, (error, result) =>
+                Meteor.call @options.serverSubmitMethodName, rec, @options.serverSubmitOptions, (error, result) =>
                     if error
                         CoffeeAlerts.error(error.reason)
                     else
