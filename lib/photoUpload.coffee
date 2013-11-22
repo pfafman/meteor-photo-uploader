@@ -143,7 +143,7 @@ class PhotoUploadHandler
                     orientation: newPhoto.attr('orientation')
                     src: newPhoto.attr('src')
 
-                Meteor.call @options.serverSubmitMethodName, rec, @options.serverSubmitOptions, (error, result) =>
+                Meteor.call @options.serverUploadMethod, rec, @options.serverUploadOptions, (error, result) =>
                     if error
                         CoffeeAlerts.error(error.reason)
                     else
