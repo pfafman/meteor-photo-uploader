@@ -23,8 +23,7 @@ class PhotoUploadHandler
         #@cropCords = null
 
     setup: ->
-        console.log("PhotoUploadHandler setup")
-
+    
         Template.photoUpload.created = =>
             @previewImage = null
     
@@ -43,7 +42,6 @@ class PhotoUploadHandler
         Template.photoUpload.events
             "click #take-photo-button": (e) ->
                 e.preventDefault()
-                console.log("upload-photo clicked")
                 $("#photo").trigger('click')
 
             "change #photo": (e) =>
@@ -87,16 +85,12 @@ class PhotoUploadHandler
             @cropCords = null
 
         Template.photoUploadPreview.rendered = =>
-            console.log("Template.photoUploadPreview.rendered")
             Meteor.defer =>
-                console.log("Defer")
                 $('#photoUploadPreview').Jcrop(
                     onSelect: (cords) =>
-                        console.log("onSelect", cords)
                         @cropCords = cords
                         @previewImageCropListeners.changed()
                     onRelease: =>
-                        console.log("onRelease")
                         @cropCords = null
                         @previewImageCropListeners.changed()
                 ).parent().on "click", (event) ->
@@ -118,7 +112,6 @@ class PhotoUploadHandler
 
             "click #crop-photo-button": (e) =>
                 e.preventDefault()
-                console.log("crop", e)
                 img = $('#photoUploadPreview')
                 if not @cropCords or not img
                     alert("You have to select a part of the image to crop")
@@ -144,7 +137,6 @@ class PhotoUploadHandler
                     orientation: newPhoto.attr('orientation')
                     src: newPhoto.attr('src')
 
-                console.log(rec)
                 Meteor.call @_serverSubmitMethodName, rec, @_serverSubmitOptions, (error, result) =>
                     if error
                         CoffeeAlerts.error(error.reason)
