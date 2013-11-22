@@ -1,0 +1,49 @@
+
+
+<template name="photoUpload">
+    <div class="photo-uploader">
+        <div class="photo-uploader-control">
+            <button class="btn btn-default needsclick" id="take-photo-button"> 
+                <i class="fa fa-camera"></i> {{takePhotoLabel}}
+            </button>
+            <input class="xneedsclick" name="photo" type="file" 
+                capture="camera" accept="image/*" id="photo" style="display:none" />
+            <p class="help-block">Choose or take a photo to upload.</p>
+        </div>
+        {{#if havePreviewImage}}
+            {{#with previewImage}}
+                {{> photoUploadPreview }}
+            {{/with}}
+        {{/if}}
+    </div>
+</template>
+
+
+<template name="photoUploadPreview">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">Image Preview</h4>
+        </div>
+        <div class="panel-body">
+            <h5>{{name}} <small>{{size}}</small></h5>
+            
+            <img id="photoUploadPreview" class="img-rounded" name="{{name}}" src="{{src}}" 
+              filesize="{{filesize}}" orientation="{{orientation}}" />
+            
+            <div style="padding:10px">
+                <div class="text-muted">Select part of image to crop</div>
+                <button id="upload-photo-button" class="btn btn-primary">
+                    <i class="fa fa-cloud-upload"></i> {{uploadLabel}}
+                </button>
+                
+                {{#isolate}}
+                {{#if imagePartSelected}}
+                <button id="crop-photo-button" class="btn btn-warning">
+                    <i class="fa fa-crop"></i> Crop
+                </button>
+                {{/if}}
+                {{/isolate}}
+            </div>
+        </div>
+    </div>
+</template>
