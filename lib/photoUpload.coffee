@@ -19,13 +19,10 @@ class PhotoUploadHandler
         @cropCords = null
         @previewImageCropListeners = new Deps.Dependency()
 
-        @optionsListeners = new Deps.Dependency()
-
         @setup()
 
     setOptions: (newOptions) ->
         @options = _.extend(@options, newOptions)
-        @optionsListeners.changed()
         
     reset: ->
         #@previewImage = null
@@ -46,7 +43,6 @@ class PhotoUploadHandler
                 @previewImage
 
             takePhotoLabel: =>
-                @optionsListeners.depend()
                 @options.takePhotoButtonLabel
 
         Template.photoUpload.events
@@ -116,7 +112,6 @@ class PhotoUploadHandler
                 @cropCords?
 
             uploadLabel: =>
-                @optionsListeners.depend()
                 @options.uploadButtonLabel
 
         Template.photoUploadPreview.events
