@@ -151,6 +151,8 @@ class PhotoUploadHandler
                     else
                         @previewImage = null
                     @previewImageListeners.changed()
+                    if @options.callback?
+                        @options.callback(error, result)
 
 
 

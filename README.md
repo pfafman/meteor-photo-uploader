@@ -48,6 +48,8 @@ Then in create a photoUpload object:
 							second is an optional one to pass to the server method.
 							
 	serverUploadOptions:    Object to pass to the server method.  Default {}
+
+	callback:				Callback for the server method callback(error, result)
 							
 	uploadButtonLabel:		Label for the upload button.  Default 'Upload'
 	
