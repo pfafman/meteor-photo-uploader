@@ -8,6 +8,7 @@ class PhotoUploadHandler
         @_takePhotoButtonLabel   = @options?.takePhotoButtonLabel || "Take Photo"
         @_resizeMaxHeight        = @options?.resizeMaxHeight      || 300
         @_resizeMaxWidth         = @options?.resizeMaxHeight      || 300
+        @_serverSubmitOptions    = @options?.serverUploadOptions  || {}
 
         @previewImage = null
         @previewImageListeners = new Deps.Dependency()
@@ -144,7 +145,7 @@ class PhotoUploadHandler
                     src: newPhoto.attr('src')
 
                 console.log(rec)
-                Meteor.call @_serverSubmitMethodName, rec, (error, result) =>
+                Meteor.call @_serverSubmitMethodName, rec, @_serverSubmitOptions, (error, result) =>
                     if error
                         CoffeeAlerts.error(error.reason)
                     else

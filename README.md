@@ -44,7 +44,10 @@ Then in create a photoUpload object:
 
 	serverUploadMethod:  	Name of your server side Meteor method for loading 
 							the images to.  Default 'submitPhoto'.  The method 
-							takes one argument for the image record.
+							takes two arguments one for the image record and the
+							second is an optional one to pass to the server method.
+							
+	serverUploadOptions:    Object to pass to the server method.  Default {}
 							
 	uploadButtonLabel:		Label for the upload button.  Default 'Upload'
 	
