@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Meteor-photo-uploader : A Meteor package to capture or upload an image, resize, crop and push to server widget on the client" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Meteor-photo-uploader</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/pfafman/meteor-photo-uploader">View on GitHub</a>
+
+          <h1 id="project_title">Meteor-photo-uploader</h1>
+          <h2 id="project_tagline">A Meteor package to capture or upload an image, resize, crop and push to server widget on the client</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/pfafman/meteor-photo-uploader/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/pfafman/meteor-photo-uploader/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="meteor-photo-uploader--beta-" class="anchor" href="#meteor-photo-uploader--beta-"><span class="octicon octicon-link"></span></a>Meteor Photo Uploader  (BETA !!!)</h1>
+
+<h4>
+<a name="beta-" class="anchor" href="#beta-"><span class="octicon octicon-link"></span></a>BETA !!!</h4>
+
+<pre><code>Only on Atmosphere to allow me to use in multiple projects easily.
+</code></pre>
+
+<h3>
+<a name="intro" class="anchor" href="#intro"><span class="octicon octicon-link"></span></a>Intro</h3>
+
+<p>This is a drop in widget to add the ability to upload, or capture, <em>(if allowed by the device)</em>, images/photos.  It will rescale the image, fix iOS sampling and orientation <em>(using <a href="https://github.com/blueimp/JavaScript-Load-Image">JavaScript-Load-Image</a> which is included)</em>, allows cropping via <a href="https://github.com/waltyuyu/meteor-jquery-jcrop">jquery-jcrop</a>, which is not included but is required.</p>
+
+<pre><code>Note: this is built using coffeescript.  If you don't want that then clone and compile it down to javascript.
+</code></pre>
+
+<h2>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<p>Tests other than the test <a href="http:://photoUploader.pfafman.com">website</a></p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<ul>
+<li>Pre-Install <a href="https://github.com/oortcloud/meteorite">Meteorite</a> to use <a href="https://atmosphere.meteor.com">Atmosphere</a>
+</li>
+</ul><div class="highlight highlight-sh"><pre>    <span class="o">[</span>sudo<span class="o">]</span> npm install -g meteorite
+</pre></div>
+
+<ul>
+<li>Install via <a href="https://atmosphere.meteor.com">Atmosphere</a>
+</li>
+</ul><pre><code>    mrt add photo-uploader
+</code></pre>
+
+<p>In your handlebar templates you can just include the template photoUploader:</p>
+
+<pre><code>    {{&gt; photoUpload}}
+</code></pre>
+
+<p>Then in create a photoUpload object:</p>
+
+<div class="highlight highlight-coffee"><pre>    <span class="nv">myObject = </span><span class="k">new</span> <span class="nx">PhotoUploader</span><span class="p">(</span> <span class="p">[</span><span class="nx">options</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+
+<h2>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<pre><code>serverUploadMethod:     Name of your server side Meteor method for loading 
+                        the images to.  Default 'submitPhoto'.  The method 
+                        takes two arguments one for the image record and the
+                        second is an optional one to pass to the server method.
+
+serverUploadOptions:    Object to pass to the server method.  Default {}
+
+callback:               Callback for the server method callback(error, result)
+
+uploadButtonLabel:      Label for the upload button.  Default 'Upload'
+
+takePhotoButtonLabel:   Label for the take photo button.  Default 'Take Photo'
+
+resizeMaxHeight:        Max Height of the image before loading to server. 
+                        Default: 300
+
+resizeMaxWidth:         Max Width of the image before loading to server. 
+                        Default: 300
+</code></pre>
+
+<h2>
+<a name="outside-packages" class="anchor" href="#outside-packages"><span class="octicon octicon-link"></span></a>Outside Packages</h2>
+
+<ul>
+<li><a href="http://http://getbootstrap.com">Bootstrap</a></li>
+<li><a href="https://github.com/blueimp/JavaScript-Load-Image">JavaScript-Load-Image</a></li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Meteor-photo-uploader maintained by <a href="https://github.com/pfafman">pfafman</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
