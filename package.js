@@ -8,14 +8,22 @@ Package.on_use(function(api, where) {
   api.use(['minimongo', 'mongo-livedata', 'templating', 'coffeescript', 'jquery', 'jquery-jcrop'], 'client');
   
   api.add_files([
-    'lib/load-image.min.js',
+    'lib/load-image.js',
+    'lib/load-image-ios.js',
+    'lib/load-image-meta.js',
+    'lib/load-image-exif.js',
+    'lib/load-image-exif-map.js',
+    'lib/load-image-orientation.js',
+    ], 'client');
+
+  api.add_files([
+    //'lib/load-image.min.js',
     'lib/photoUpload.css', 
     'lib/photoUpload.html', 
     'lib/photoUpload.coffee'
     ], 'client');
 
   if (api.export) {
-    //api.export('PhotoUploadHandler');
     api.export('PhotoUploadHandler');
   }
 });
