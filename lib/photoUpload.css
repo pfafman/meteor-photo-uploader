@@ -1,4 +1,8 @@
 
-#photoUploadPreview {
+.photo-uploader-control {
+    width: 100%;
+}
+
+.photoUploadPreview {
     max-width: 90%;
 }

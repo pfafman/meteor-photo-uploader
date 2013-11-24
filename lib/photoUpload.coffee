@@ -7,8 +7,8 @@ class PhotoUploadHandler
             serverUploadMethod:     "submitPhoto"
             uploadButtonLabel:      "Upload"
             takePhotoButtonLabel:   "Take Photo"
-            resizeMaxHeight:        300
-            resizeMaxHeight:        300
+            #resizeMaxHeight:        300
+            #resizeMaxWidth:         300
             serverUploadOptions:    {}
 
         @options = _.defaults(@options, defaults)
@@ -23,6 +23,16 @@ class PhotoUploadHandler
 
     _iOS: ->
         window.navigator?.platform? and (/iP(hone|od|ad)/).test(window.navigator.platform)
+
+    _maxPreviewImageWidth: ->
+        console.log('_maxPreviewImageWidth', $('.photo-uploader-control').width())
+        if @_iOS()
+            @options.resizeMaxWidth || (0.9 * $('.photo-uploader-control').width())
+        else
+            @options.resizeMaxWidth || (0.9 * $('.photo-uploader-control').width())
+
+    _maxPreviewImageHeight: ->
+        @options.resizeMaxHeight
 
     setOptions: (newOptions) ->
         @options = _.extend(@options, newOptions)
@@ -60,6 +70,7 @@ class PhotoUploadHandler
 
             "change #photoUploadFileSelector": (e) =>
                 if file = e.target.files[0]
+
                     loadImage.parseMetaData file, (data) =>
                         loadImage file, (img) =>
                             @previewImage =
@@ -70,8 +81,8 @@ class PhotoUploadHandler
                                 orientation: data?.exif?.get?('Orientation') or 1
                             @previewImageListeners.changed()
                         ,
-                            maxHeight: @options.resizeMaxHeight
-                            maxWidth: @options.resizeMaxWidth
+                            maxHeight: @_maxPreviewImageHeight()
+                            maxWidth: @_maxPreviewImageWidth()
                             orientation: data?.exif?.get?('Orientation') or 1
                             canvas: true
                 
@@ -130,16 +141,14 @@ class PhotoUploadHandler
                 if not @cropCords or not img
                     alert("You have to select a part of the image to crop")
                 else
-                    console.log("crop", @_iOS(), img[0])
-
-                    if @_iOS()
-                        console.log("iOS", img[0].width, img[0].height)
-                        if img[0].width > img[0].height
-                            console.log("landscape")
-                            @cropCords.x *= 2
-                            @cropCords.y *= 2
-                            @cropCords.w *= 2
-                            @cropCords.h *= 2
+                    #if @_iOS()
+                        #console.log("iOS", img[0].width, img[0].height)
+                        #if img[0].width > img[0].height
+                            #console.log("landscape")
+                            #@cropCords.x *= 2
+                            #@cropCords.y *= 2
+                            #@cropCords.w *= 2
+                            #@cropCords.h *= 2
 
                     newImg = loadImage.scale img[0],
                         left: @cropCords.x
