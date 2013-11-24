@@ -5,8 +5,15 @@ Package.describe({
 
 Package.on_use(function(api, where) {
   
-  api.use(['minimongo', 'mongo-livedata', 'templating', 'coffeescript', 'jquery', 'jquery-jcrop'], 'client');
+  api.use(['minimongo', 'mongo-livedata', 'templating', 'coffeescript', 'jquery'], 'client');
   
+  // Jcrop
+  api.add_files([
+    'lib/Jcrop/js/jquery.Jcrop.js',
+    'lib/Jcrop/css/jquery.Jcrop.css',
+    'lib/Jcrop/css/Jcrop.gif'
+  ], 'client');
+
   api.add_files([
     'lib/load-image.js',
     'lib/load-image-ios.js',

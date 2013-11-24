@@ -21,12 +21,19 @@ class PhotoUploadHandler
 
         @setup()
 
+    _iOS: ->
+        window.navigator?.platform? and (/iP(hone|od|ad)/).test(window.navigator.platform)
+
     setOptions: (newOptions) ->
         @options = _.extend(@options, newOptions)
-        
+    
     reset: ->
-        #@previewImage = null
-        #@cropCords = null
+        # nothing
+
+    _reset: ->
+        @previewImage = null
+        @cropCords = null
+        @previewImageListeners.changed()
 
     setup: ->
     
@@ -48,24 +55,25 @@ class PhotoUploadHandler
         Template.photoUpload.events
             "click #take-photo-button": (e) ->
                 e.preventDefault()
-                $("#photo").trigger('click')
+                $("#photoUploadForm").get(0).reset()
+                $("#photoUploadFileSelector").trigger('click')
 
-            "change #photo": (e) =>
-                file = e.target.files[0]
-                loadImage.parseMetaData file, (data) =>
-                    loadImage file, (img) =>
-                        @previewImage =
-                            name: file.name.split('.')[0]
-                            src: img.toDataURL() #img.src #reSizeImageMP(img, metadata.Orientation)
-                            filesize: file.size
-                            newImage: true
+            "change #photoUploadFileSelector": (e) =>
+                if file = e.target.files[0]
+                    loadImage.parseMetaData file, (data) =>
+                        loadImage file, (img) =>
+                            @previewImage =
+                                name: file.name.split('.')[0]
+                                src: img.toDataURL() #img.src #reSizeImageMP(img, metadata.Orientation)
+                                filesize: file.size
+                                newImage: true
+                                orientation: data?.exif?.get?('Orientation') or 1
+                            @previewImageListeners.changed()
+                        ,
+                            maxHeight: @options.resizeMaxHeight
+                            maxWidth: @options.resizeMaxWidth
                             orientation: data?.exif?.get?('Orientation') or 1
-                        @previewImageListeners.changed()
-                    ,
-                        maxHeight: @options.resizeMaxHeight
-                        maxWidth: @options.resizeMaxWidth
-                        orientation: data?.exif?.get?('Orientation') or 1
-                        canvas: true
+                            canvas: true
                 
 
             #
@@ -95,13 +103,13 @@ class PhotoUploadHandler
                 $('#photoUploadPreview').Jcrop(
                     onSelect: (cords) =>
                         @cropCords = cords
+                        console.log("onSelect", @cropCords)
                         @previewImageCropListeners.changed()
                     onRelease: =>
                         @cropCords = null
                         @previewImageCropListeners.changed()
                 ).parent().on "click", (event) ->
                     event.preventDefault()
-
 
         Template.photoUploadPreview.helpers
             size: ->
@@ -122,6 +130,17 @@ class PhotoUploadHandler
                 if not @cropCords or not img
                     alert("You have to select a part of the image to crop")
                 else
+                    console.log("crop", @_iOS(), img[0])
+
+                    if @_iOS()
+                        console.log("iOS", img[0].width, img[0].height)
+                        if img[0].width > img[0].height
+                            console.log("landscape")
+                            @cropCords.x *= 2
+                            @cropCords.y *= 2
+                            @cropCords.w *= 2
+                            @cropCords.h *= 2
+
                     newImg = loadImage.scale img[0],
                         left: @cropCords.x
                         top: @cropCords.y

@@ -6,8 +6,10 @@
             <button class="btn btn-default needsclick" id="take-photo-button"> 
                 <i class="fa fa-camera"></i> {{takePhotoLabel}}
             </button>
+            <form id="photoUploadForm">
             <input class="xneedsclick" name="photo" type="file" 
-                capture="camera" accept="image/*" id="photo" style="display:none" />
+                capture="camera" accept="image/*" id="photoUploadFileSelector" style="display:none" />
+            </form>
             <p class="help-block">Choose or take a photo to upload.</p>
         </div>
         {{#if havePreviewImage}}
