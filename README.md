@@ -5,7 +5,7 @@ Meteor Photo Uploader  (BETA !!!)
 	Only on Atmosphere to allow me to use in multiple projects easily.
 
 ### Intro
-This is a drop in widget to add the ability to upload, or capture, *(if allowed by the device)*, images/photos.  It will rescale the image, fix iOS sampling and orientation *(using [JavaScript-Load-Image](https://github.com/blueimp/JavaScript-Load-Image) which is included)*, allows cropping via [jquery-jcrop](https://github.com/waltyuyu/meteor-jquery-jcrop), which is not included but is required.
+This is a drop in widget to add the ability to upload, or capture, *(if allowed by the device)*, images/photos.  It will rescale the image, fix iOS sampling and orientation *(using [JavaScript-Load-Image](https://github.com/blueimp/JavaScript-Load-Image) which is included)*, allows cropping via [jquery-jcrop](https://github.com/waltyuyu/meteor-jquery-jcrop), which is also included.
 
 	Note: this is built using coffeescript.  If you don't want that then clone and compile it down to javascript.
 
@@ -66,3 +66,4 @@ Then in create a photoUpload object:
 
 * [Bootstrap](http://http://getbootstrap.com)
 * [JavaScript-Load-Image](https://github.com/blueimp/JavaScript-Load-Image)
+* [jquery-jcrop](https://github.com/waltyuyu/meteor-jquery-jcrop)
