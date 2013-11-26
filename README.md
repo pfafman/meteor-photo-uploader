@@ -5,13 +5,14 @@ Meteor Photo Uploader  (BETA !!!)
 	Only on Atmosphere to allow me to use in multiple projects easily.
 
 ### Intro
-This is a drop in widget to add the ability to upload, or capture, *(if allowed by the device)*, images/photos.  It will rescale the image, fix iOS sampling and orientation *(using [JavaScript-Load-Image](https://github.com/blueimp/JavaScript-Load-Image) which is included)*, allows cropping via [jquery-jcrop](https://github.com/waltyuyu/meteor-jquery-jcrop), which is also included.
+This is a drop in widget to add the ability to upload, or capture, *(if allowed by the device)*, images/photos.  It will rescale the image, fix iOS sampling and orientation *(using [JavaScript-Load-Image](https://github.com/blueimp/JavaScript-Load-Image) which is included)*, allows cropping via [Jcrop](https://github.com/tapmodo/Jcrop), which is also included with a few [modifications](https://github.com/tapmodo/Jcrop/pull/107).
 
 	Note: this is built using coffeescript.  If you don't want that then clone and compile it down to javascript.
 
 ## TODO
 
-Tests other than the test [website](http:://photoUploader.pfafman.com)
+Tests other than the test [website](http://photos.pfafman.com)
+Add more options
 
 ## Installation
 
@@ -66,4 +67,4 @@ Then in create a photoUpload object:
 
 * [Bootstrap](http://http://getbootstrap.com)
 * [JavaScript-Load-Image](https://github.com/blueimp/JavaScript-Load-Image)
-* [jquery-jcrop](https://github.com/waltyuyu/meteor-jquery-jcrop)
+* [Jcrop](https://github.com/tapmodo/Jcrop) with [modifications](https://github.com/tapmodo/Jcrop/pull/107)
