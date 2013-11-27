@@ -27,25 +27,42 @@
             <h4 class="panel-title">Image Preview</h4>
         </div>
         <div class="panel-body">
-            <h5>{{name}} <small>{{size}}</small></h5>
-            
-            <img id="photoUploadPreview" class="img-rounded" name="{{name}}" src="{{src}}" 
-              filesize="{{filesize}}" orientation="{{orientation}}" />
-            
-            <div style="padding:10px">
-                <div class="text-muted">Select part of image to crop</div>
-                <button id="upload-photo-button" class="btn btn-primary">
-                    <i class="fa fa-cloud-upload"></i> {{uploadLabel}}
-                </button>
-                
-                {{#isolate}}
-                {{#if imagePartSelected}}
-                <button id="crop-photo-button" class="btn btn-warning">
-                    <i class="fa fa-crop"></i> Crop
-                </button>
+            <form class="" role="form">
+
+                {{#if editTitle}}
+                    <div class="form-group">
+                        <label for="title" class="control-label">Title</label>
+                        <input type="text" name="title" class="form-control" id="title" placeholder="Title" value="{{name}}">
+                        <div class="help-block">Size {{size}}</div>
+                    </div>
+                {{else}}
+                    <h5>{{name}} <small>{{size}}</small></h5>
                 {{/if}}
-                {{/isolate}}
-            </div>
+                <img id="photoUploadPreview" class="img-rounded" name="{{name}}" src="{{src}}" 
+                  filesize="{{filesize}}" orientation="{{orientation}}" />
+                
+                <div style="padding:5px">
+                    <div class="text-muted">Select part of image to crop</div>
+
+                    {{#if editCaption}}
+                        <div class="form-group">
+                        <label for="caption" class="control-label">Caption</label>
+                        <input type="text" name="caption" class="form-control" id="caption" placeholder="add a caption" value="{{caption}}">
+                    </div>
+                    {{/if}}
+                    <button id="upload-photo-button" class="btn btn-primary">
+                        <i class="fa fa-cloud-upload"></i> {{uploadLabel}}
+                    </button>
+                    
+                    {{#isolate}}
+                    {{#if imagePartSelected}}
+                    <button id="crop-photo-button" class="btn btn-warning">
+                        <i class="fa fa-crop"></i> Crop
+                    </button>
+                    {{/if}}
+                    {{/isolate}}
+                </div>
+            </form>
         </div>
     </div>
 </template>

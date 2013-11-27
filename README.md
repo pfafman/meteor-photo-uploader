@@ -62,6 +62,10 @@ Then in create a photoUpload object:
 	resizeMaxWidth:			Max Width of the image before loading to server. 
 							Default: 300
 							
+	editTitle:              Add a title on upload.  Default: false
+	
+	editCaption:            Add a caption on upload.  Default: false
+							
 
 ## Outside Packages
 

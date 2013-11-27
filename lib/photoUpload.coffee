@@ -10,6 +10,8 @@ class PhotoUploadHandler
             #resizeMaxHeight:        300
             #resizeMaxWidth:         300
             serverUploadOptions:    {}
+            editTitle:              false
+            editCaption:            false
 
         @options = _.defaults(@options, defaults)
         
@@ -133,6 +135,12 @@ class PhotoUploadHandler
             uploadLabel: =>
                 @options.uploadButtonLabel
 
+            editTitle: =>
+                @options.editTitle
+
+            editCaption: =>
+                @options.editCaption
+
         Template.photoUploadPreview.events
 
             "click #crop-photo-button": (e) =>
@@ -165,11 +173,20 @@ class PhotoUploadHandler
             "click #upload-photo-button": (e) =>
                 e.preventDefault()
                 newPhoto = $('#photoUploadPreview')
+
                 rec =
                     name: newPhoto.attr('name')
                     filesize: newPhoto.attr('src').length
                     orientation: newPhoto.attr('orientation')
                     src: newPhoto.attr('src')
+
+                if @options.editTitle
+                    rec.title = $('#title').val()
+                else
+                    rec.title = rec.name
+
+                if @options.editCaption
+                    rec.caption = $('#caption').val()
 
                 Meteor.call @options.serverUploadMethod, rec, @options.serverUploadOptions, (error, result) =>
                     if error
