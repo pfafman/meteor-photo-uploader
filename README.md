@@ -1,8 +1,5 @@
-Meteor Photo Uploader  (BETA !!!)
+Meteor Photo Uploader
 =====================
-
-#### BETA !!! 
-	Only on Atmosphere to allow me to use in multiple projects easily.
 
 ### Intro
 This is a drop in widget to add the ability to upload, or capture, *(if allowed by the device)*, images/photos.  It will rescale the image, fix iOS sampling and orientation *(using [JavaScript-Load-Image](https://github.com/blueimp/JavaScript-Load-Image) which is included)*, allows cropping via [Jcrop](https://github.com/tapmodo/Jcrop), which is also included with a few [modifications](https://github.com/tapmodo/Jcrop/pull/107).
@@ -18,16 +15,30 @@ Add more options
 
 * Pre-Install [Meteorite](https://github.com/oortcloud/meteorite) to use [Atmosphere](https://atmosphere.meteor.com)
 
-	
 ```sh
 	[sudo] npm install -g meteorite
 ```
 
-* Install via [Atmosphere](https://atmosphere.meteor.com)
+Note this is not on Atmosphere yet.  You can add it if you want by editing your meteor upper level smart.json file with a "git" entry:
+
+```
+{
+	"packages": {
+    	"photo-uploader": {
+        	"git": "https://github.com/pfafman/meteor-photo-uploader.git"
+    	},
+    	....
+   	}
+}
+```
+and then run meteorite to install.
 
 ```
 	mrt add photo-uploader
 ```
+
+If/when someone puts this on meteorite you can skip editing your smart.json file.
+
 
 In your handlebar templates you can just include the template photoUploader:
 
