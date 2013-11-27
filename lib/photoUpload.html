@@ -2,7 +2,14 @@
 
 <template name="photoUpload">
     <div class="photo-uploader">
-        <div class="photo-uploader-control">
+        
+        {{#if havePreviewImage}}
+            {{#with previewImage}}
+                {{> photoUploadPreview }}
+            {{/with}}
+        {{/if}}
+
+        <div class="text-center photo-uploader-control">
             <button class="btn btn-default needsclick" id="take-photo-button"> 
                 <i class="fa fa-camera"></i> {{takePhotoLabel}}
             </button>
@@ -10,19 +17,14 @@
             <input class="xneedsclick" name="photo" type="file" 
                 capture="camera" accept="image/*" id="photoUploadFileSelector" style="display:none" />
             </form>
-            <p class="help-block">Choose or take a photo to upload.</p>
+            <!-- <p class="help-block">Choose or take a photo to upload.</p> -->
         </div>
-        {{#if havePreviewImage}}
-            {{#with previewImage}}
-                {{> photoUploadPreview }}
-            {{/with}}
-        {{/if}}
     </div>
 </template>
 
 
 <template name="photoUploadPreview">
-    <div class="panel panel-primary">
+    <div id="_photoPreview" class="panel panel-primary">
         <div class="panel-heading">
             <h4 class="panel-title">Image Preview</h4>
         </div>

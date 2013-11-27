@@ -123,6 +123,10 @@ class PhotoUploadHandler
                         @previewImageCropListeners.changed()
                 ).parent().on "click", (event) ->
                     event.preventDefault()
+                if not @cropCords
+                    $('html,body').animate
+                        scrollTop: $("#_photoPreview").offset().top - 53
+                    , 'slow'
 
         Template.photoUploadPreview.helpers
             size: ->
