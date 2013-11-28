@@ -9,6 +9,7 @@ class PhotoUploadHandler
             takePhotoButtonLabel:   "Take Photo"
             #resizeMaxHeight:        300
             #resizeMaxWidth:         300
+            allowCropping:          true
             serverUploadOptions:    {}
             editTitle:              false
             editCaption:            false
@@ -113,16 +114,17 @@ class PhotoUploadHandler
 
         Template.photoUploadPreview.rendered = =>
             Meteor.defer =>
-                $('#photoUploadPreview').Jcrop(
-                    onSelect: (cords) =>
-                        @cropCords = cords
-                        console.log("onSelect", @cropCords)
-                        @previewImageCropListeners.changed()
-                    onRelease: =>
-                        @cropCords = null
-                        @previewImageCropListeners.changed()
-                ).parent().on "click", (event) ->
-                    event.preventDefault()
+                if @options.allowCropping
+                    $('#photoUploadPreview').Jcrop(
+                        onSelect: (cords) =>
+                            @cropCords = cords
+                            console.log("onSelect", @cropCords)
+                            @previewImageCropListeners.changed()
+                        onRelease: =>
+                            @cropCords = null
+                            @previewImageCropListeners.changed()
+                    ).parent().on "click", (event) ->
+                        event.preventDefault()
                 if not @cropCords
                     $('html,body').animate
                         scrollTop: $("#_photoPreview").offset().top - 53
