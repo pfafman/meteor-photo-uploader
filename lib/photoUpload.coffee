@@ -198,11 +198,15 @@ class PhotoUploadHandler
                 if @options.editCaption
                     rec.caption = $('#caption').val()
 
+                tempPreviewImage = @previewImage
+                @previewImage = null
+                @previewImageListeners.changed()
+
                 Meteor.call @options.serverUploadMethod, rec, @options.serverUploadOptions, (error, result) =>
                     if error
                         CoffeeAlerts.error(error.reason)
-                    else
-                        @previewImage = null
+                        @previewImage = tempPreviewImage
+                        @previewImageListeners.changed()
                     @previewImageListeners.changed()
                     if @options.callback?
                         @options.callback(error, result)
