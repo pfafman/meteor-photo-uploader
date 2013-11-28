@@ -127,7 +127,7 @@ class PhotoUploadHandler
                         event.preventDefault()
                 if not @cropCords
                     $('html,body').animate
-                        scrollTop: $("#_photoPreview").offset().top - 53
+                        scrollTop: $("#_photoPreview").offset().top - 40
                     , 'slow'
 
         Template.photoUploadPreview.helpers
@@ -148,6 +148,10 @@ class PhotoUploadHandler
                 @options.editCaption
 
         Template.photoUploadPreview.events
+
+            "click #cancel-button": (e) =>
+                @previewImage = null
+                @previewImageListeners.changed()
 
             "click #crop-photo-button": (e) =>
                 e.preventDefault()

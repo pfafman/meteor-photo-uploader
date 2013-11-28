@@ -3,11 +3,7 @@
 <template name="photoUpload">
     <div class="photo-uploader">
         
-        {{#if havePreviewImage}}
-            {{#with previewImage}}
-                {{> photoUploadPreview }}
-            {{/with}}
-        {{/if}}
+        
 
         <div class="text-center photo-uploader-control">
             <button class="btn btn-default needsclick" id="take-photo-button"> 
@@ -19,6 +15,13 @@
             </form>
             <!-- <p class="help-block">Choose or take a photo to upload.</p> -->
         </div>
+
+        {{#if havePreviewImage}}
+            {{#with previewImage}}
+                {{> photoUploadPreview }}
+            {{/with}}
+        {{/if}}
+
     </div>
 </template>
 
@@ -56,6 +59,10 @@
                         <i class="fa fa-cloud-upload"></i> {{uploadLabel}}
                     </button>
                     
+                    <button id="cancel-button" class="btn btn-default">
+                        <i class="fa fa-trash-o"></i> Cancel
+                    </button>
+
                     {{#isolate}}
                     {{#if imagePartSelected}}
                     <button id="crop-photo-button" class="btn btn-warning">
