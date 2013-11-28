@@ -207,7 +207,6 @@ class PhotoUploadHandler
                         CoffeeAlerts.error(error.reason)
                         @previewImage = tempPreviewImage
                         @previewImageListeners.changed()
-                    @previewImageListeners.changed()
                     if @options.callback?
                         @options.callback(error, result)
 
