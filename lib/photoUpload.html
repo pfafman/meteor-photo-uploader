@@ -3,8 +3,6 @@
 <template name="photoUpload">
     <div class="photo-uploader">
         
-        
-
         <div class="text-center photo-uploader-control">
             <button class="btn btn-default needsclick" id="take-photo-button"> 
                 <i class="fa fa-camera"></i> {{takePhotoLabel}}
@@ -16,62 +14,62 @@
             <!-- <p class="help-block">Choose or take a photo to upload.</p> -->
         </div>
 
-        {{#if havePreviewImage}}
-            {{#with previewImage}}
-                {{> photoUploadPreview }}
-            {{/with}}
-        {{/if}}
-
     </div>
 </template>
-
 
 <template name="photoUploadPreview">
-    <div id="_photoPreview" class="panel panel-primary">
-        <div class="panel-heading">
-            <h4 class="panel-title">Image Preview</h4>
-        </div>
-        <div class="panel-body">
-            <form class="" role="form">
-
-                {{#if editTitle}}
-                    <div class="form-group">
-                        <label for="title" class="control-label">Title</label>
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Title" value="{{name}}">
-                        <div class="help-block">Size {{size}}</div>
-                    </div>
-                {{else}}
-                    <h5>{{name}} <small>{{size}}</small></h5>
-                {{/if}}
-                <img id="photoUploadPreview" class="img-rounded" name="{{name}}" src="{{src}}" 
-                  filesize="{{filesize}}" orientation="{{orientation}}" />
-                
-                <div style="padding:5px">
-                    <div class="text-muted">Select part of image to crop</div>
-
-                    {{#if editCaption}}
-                        <div class="form-group">
-                        <label for="caption" class="control-label">Caption</label>
-                        <input type="text" name="caption" class="form-control" id="caption" placeholder="add a caption" value="{{caption}}">
-                    </div>
-                    {{/if}}
-                    <button id="upload-photo-button" class="btn btn-primary">
-                        <i class="fa fa-cloud-upload"></i> {{uploadLabel}}
-                    </button>
-                    
-                    <button id="cancel-button" class="btn btn-default">
-                        <i class="fa fa-trash-o"></i> Cancel
-                    </button>
-
-                    {{#isolate}}
-                    {{#if imagePartSelected}}
-                    <button id="crop-photo-button" class="btn btn-warning">
-                        <i class="fa fa-crop"></i> Crop
-                    </button>
-                    {{/if}}
-                    {{/isolate}}
+    <div id="photo-preview-dialog" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Image Preview</h4>
                 </div>
-            </form>
+      
+                <div class="modal-body">
+                    <form class="" role="form">
+
+                        {{#if editTitle}}
+                            <div class="form-group">
+                                <label for="title" class="control-label">Title</label>
+                                <input type="text" name="title" class="form-control" id="title" placeholder="Title" value="{{name}}">
+                                <div class="help-block">Size {{size}}</div>
+                            </div>
+                        {{else}}
+                            <h5>{{name}} <small>{{size}}</small></h5>
+                        {{/if}}
+
+                         <img id="photoUploadPreview" class="img-rounded" name="{{name}}" src="{{src}}" 
+                            filesize="{{filesize}}" orientation="{{orientation}}" />
+
+                        <div style="padding:5px">
+                            <div class="text-muted">Select part of image to crop</div>
+
+                            {{#if editCaption}}
+                                <div class="form-group">
+                                <label for="caption" class="control-label">Caption</label>
+                                <input type="text" name="caption" class="form-control" id="caption" placeholder="add a caption" value="{{caption}}">
+                            </div>
+                            {{/if}}
+                            <button id="upload-photo-button" class="btn btn-primary">
+                                <i class="fa fa-cloud-upload"></i> {{uploadLabel}}
+                            </button>
+                            
+                            <button id="cancel-photo-upload" class="btn btn-default">
+                                <i class="fa fa-trash-o"></i> Cancel ???
+                            </button>
+
+                            {{#if imagePartSelected}}
+                                <button id="crop-photo-button" class="btn btn-warning">
+                                    <i class="fa fa-crop"></i> Crop
+                                </button>
+                            {{/if}}
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </template>
+
+

@@ -5,7 +5,7 @@ Package.describe({
 
 Package.on_use(function(api, where) {
   
-  api.use(['minimongo', 'mongo-livedata', 'templating', 'coffeescript', 'jquery'], 'client');
+  api.use(['minimongo', 'mongo-livedata', 'templating', 'coffeescript', 'jquery', 'underscore', 'deps'], 'client');
   
   // Jcrop
   api.add_files([
@@ -31,7 +31,7 @@ Package.on_use(function(api, where) {
     ], 'client');
 
   if (api.export) {
-    api.export('PhotoUploadHandler');
+    api.export('PhotoUploader');
   }
 });
 

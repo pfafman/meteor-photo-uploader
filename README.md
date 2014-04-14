@@ -83,3 +83,5 @@ Then in create a photoUpload object:
 * [Bootstrap](http://http://getbootstrap.com)
 * [JavaScript-Load-Image](https://github.com/blueimp/JavaScript-Load-Image)
 * [Jcrop](https://github.com/tapmodo/Jcrop) with [modifications](https://github.com/tapmodo/Jcrop/pull/107)
+* [Jcrop Manual](http://deepliquid.com/content/Jcrop_Manual.html)
+
