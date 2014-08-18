@@ -1,6 +1,10 @@
 Meteor Photo Uploader
 =====================
 
+
+## NOTICE:  THIS IS WAY OUT OF DATE AND DOES NOT WORK WITH THE CURRENT RELEASE OF METEOR
+That said if I get time in the future I will fix it but it is not high on my list of things I need to get done today...
+
 ### Intro
 This is a drop in widget to add the ability to upload, or capture, *(if allowed by the device)*, images/photos.  It will rescale the image, fix iOS sampling and orientation *(using [JavaScript-Load-Image](https://github.com/blueimp/JavaScript-Load-Image) which is included)*, allows cropping via [Jcrop](https://github.com/tapmodo/Jcrop), which is also included with a few [modifications](https://github.com/tapmodo/Jcrop/pull/107).
 
