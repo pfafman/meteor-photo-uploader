@@ -1,6 +1,9 @@
 Meteor Photo Uploader
 =====================
 
+
+### *Depreciated !!! :  See my new package [*photoUp*](https://github.com/pfafman/meteor-photo-up.git)*
+
 ### Intro
 This is a drop in widget to add the ability to upload, or capture, *(if allowed by the device)*, images/photos.  It will rescale the image, fix iOS sampling and orientation *(using [JavaScript-Load-Image](https://github.com/blueimp/JavaScript-Load-Image) which is included)*, allows cropping via [Jcrop](https://github.com/tapmodo/Jcrop), which is also included with a few [modifications](https://github.com/tapmodo/Jcrop/pull/107).
 
